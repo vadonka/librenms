@@ -1,0 +1,56 @@
+---
+username: admin
+password: admin
+model: junos
+resolve_dns: true
+interval: 3600
+log: ~/.config/oxidized/log
+use_syslog: false
+debug: false
+threads: 30
+timeout: 20
+retries: 3
+prompt: !ruby/regexp /^([\w.@-]+[#>]\s?)$/
+rest: 0.0.0.0:8888
+next_adds_job: false
+vars:
+  enable: S3cre7
+groups: {}
+models: {}
+pid: "~/.config/oxidized/pid"
+crash:
+  directory: "~/.config/oxidized/crashes"
+  hostnames: false
+stats:
+  history_size: 10
+input:
+  default: ssh, telnet
+  debug: false
+  ssh:
+    secure: false
+  ftp:
+    passive: true
+  utf8_encoded: true
+output:
+ default: git
+ git:
+  user: librenms
+  email: librenms@ttre.hu
+  repo: "~/.config/oxidized/default.git"
+source:
+  default: http
+  debug: true
+  http:
+    secure: false
+    scheme: http
+    url: http://librenms:8000/api/v0/oxidized
+    map:
+      name: hostname
+      model: os
+      group: group
+    headers:
+      X-Auth-Token: 066648c0bf1717028b848ee59427d44f
+model_map:
+  juniper: junos
+  cisco: ios
+  ciscosb: ciscosmb
